@@ -4,155 +4,133 @@
     <meta charset="UTF-8">
     <title>Page title</title>
     <style>
- *{margin:0px;padding:0px;}
- input{
-   margin:0px;padding:0px;
-}
- body{
-   height:100vh;
-   background:#458;
-   position:relative;
- }
-.container{
-    width:200px;
-    height:387px;
-    background-color:#458;
-    border-radius:25px;
-    margin: auto;
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    transform-translate:-50%, -50%;
-    box-shadow:2px 3px 10px  #333;
-}
-.profile{
-   width:200px;
-    height:110px;
-    background-color:transparent;
-    border-radius:25px 25px 0px 0px;
-    position:relative;
-}
-.profile span{
-    width:35px;
-    height:35px;
-    color:#458;
-    top:0;
-    bottom:0;
-    right:0;
-    left:0;
-    margin: auto;
-    display:block;
-    font-size:30px;
-    padding:8px;
-    text-align:center;
-    background-color:#ddd;
-    border-radius:100%;
-    position:absolute;
-   transform-translate:-50%, 50%;
-   box-shadow:1.5px 1.9px 8px  #333;
-}
-.profile h3{
-    width:100%;
-    height:25px;
-    color:#ddd;
-    top:25;
-    bottom:0;
-    right:0;
-    left:0;
-    text-align:center;
-    padding:0px 0px;
-    font-size:16px;
-    text-align:center;
-    background:transparent;
-    position:absolute;
-   transform-translate:-50%, 50%;
-   
-}
-.form-data{
-    width:100%;
-    height:228px;
-    background:rgba(183, 218, 201, 0.15);
-    padding:6px 0px;
-    position:relative;
-    
-}
-.form-data input{
-    width:130px;
-    border-radius:25px;
-    padding:5px 8px;
-    margin:4px 30px;
-    border:none;
-    outline:none;
-    color:gray;
-    border-bottom:4px solid #444;
-}
-.button-data{
-    width:100%;
-    height:37px;
-    background:#458;
-    position:relative;
-    border-radius:0px 0px 25px 25px;  
-}
-.button-data button{
-  border:none;
-  outline:none;
-  font-family:arial black;
-  border-radius:3px;
-  color:silver;
-  padding:1px 5px;
-  background:#458;
-  border:1px solid #ddd;
-  text-align:center;
-  margin:7px 74.2px;
-  font-size:15px;
-  background:rgba(183, 218, 201, 0.15);
-  background:transparent;
-}
-
+      *{
+        margin:0px;padding:0px;
+      }
+     .signup{
+       width:174px;
+       top:50%;
+       left:50%;
+       padding:30px;
+       transform:translate(-50%, -50%);
+       position:absolute;
+       border:1px solid #333;
+     }
+     .login{
+       width:174px;
+       top:50%;
+       left:50%;
+       padding:25px;
+       display:none;
+       transform:translate(-50%, -50%);
+       position:absolute;
+       border:1px solid #333;
+     }
     </style>
 </head>
 <body>
-  <div class="container">
-    <div class="profile">
-       <span>৳</span>
-       <h3>Sign</h3>
-    </div>
-    <div class="form-data">
-      <form>
-         <input type="text" placeholder="Your First Name..">
-         <input type="text" placeholder="Your Last Name..">
-         <input type="number" placeholder="Mobile or phone">
-         <input type="email" placeholder="Email-Address">
-         <input id="newPassword" type="password" placeholder="New Password">
-         <input id="cnfrmPassword" type="password" placeholder="Confirme Password">
-      </form>
-    </div>
-    <div class="button-data">
-       <button onClick="myButton()">Signup</button>
-    </div>
-  </div>
+<div class="container">
+<div class="signup">
+ <form>
+  <input id="username" type="text" placeholder="Enter your name.." style="outline:none;margin-bottom:8px;padding:2px 5px;width:160px;color:gray;">
+  <input id="email" type="email" placeholder="Email Address" style="outline:none;margin-bottom:8px;padding:2px 5px;width:160px;color:gray;">
+  <input id="number" type="number" placeholder="Mobile or phone" style="outline:none;margin-bottom:8px;padding:2px 5px;width:160px;color:gray;">
+  <input id="password" type="password" placeholder="Confirme password" style="outline:none;margin-bottom:15px;padding:2px 5px;width:160px;color:gray;"><br/>
+  <button id="signUp" type="button" style="margin-left:50px;color:silver;border:none;padding:3px 7px;border-radius:3px;background:#444;"> signUp</button>
+ </form>
+</div>
+    
+<div class="login">
+ <form>
+  <input id="loginEmail" type="email" placeholder="Email Address" style="outline:none;margin-bottom:8px;padding:2px 5px;width:160px;color:gray;">
   
-  <script>
-    function myButton(){
-       var newPassword = document.getElementById("newPassword").value;
-    var cnfrmPassword = document.getElementById("cnfrmPassword").value;
-    
-    if(newPassword === "" && cnfrmPassword === ""){
-    
-      alert("empty password");
-    }
-    
-    else if(newPassword === "admin0#Co5@*0%" && cnfrmPassword === "admin0#Co5@*0%"){
-    
-    location.href="login.html";
-    
-    }
-    
-    }
-  </script>
-  
-
+  <input id="loginPassword" type="password" placeholder="Confirme password" style="outline:none;margin-bottom:20px;padding:2px 5px;width:160px;color:gray;"><br/>
+ <button id="logIn" type="button" style="margin-left:50px;color:silver;border:none;padding:3px 10px;border-radius:3px;background:#444;"> logIn</button>
+ </form>
+</div>
+ 
+</div>
 </body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAmCLCQ7tP9hWVIJBk6aDxTmOXs53oo7D8",
+    authDomain: "demoap-efc7b.firebaseapp.com",
+    projectId: "demoap-efc7b",
+    storageBucket: "demoap-efc7b.appspot.com",
+    messagingSenderId: "409668705340",
+    appId: "1:409668705340:web:b92caf3119d320a7a03739"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const auth = getAuth();
+  
+ 
+  signUp.addEventListener('click',(e) =>{
+  var username = document.getElementById("username").value; 
+  var email = document.getElementById("email").value;
+ var number = document.getElementById("number").value;
+  var password = document.getElementById("password").value;
+  
+ 
+ createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+
+set(ref(database, 'users/' + user.uid),{
+  username: username,
+  email: email,
+  number: number,
+  password: password,
+ })
+
+var signup = document.querySelector(".signup");
+ var login = document.querySelector(".login");
+  signup.style.display = "none";
+  login.style.display = "block";
+alert("user created");
+  })
+.catch((error) => {
+   const errorCode = error.code;
+   const errorMessage = error.message;
+    // ..
+alert('errorMessage');
+ });
+});
+  
+  
+ logIn.addEventListener('click',(a) =>{
+   var email = document.getElementById("loginEmail").value;
+  var password = document.getElementById("loginPassword").value;
+  
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+ 
+alert('login successful');
+const user = userCredential.user;
+  const dateAndTime = new Date();
+   update(ref(database, 'users/' + user.uid),{
+   updateTime: dateAndTime,
+ })
+})
+
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+alert('errorMessage');
+  });
+  });
+</script>
 </html>
